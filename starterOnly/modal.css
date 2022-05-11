@@ -8,6 +8,7 @@
   --font-clr-red-01: #FE142F;
 
   --font-clr-white-01: #FFF;
+  --font-clr-white-02: #E5E5E5;
 
   --font-default: "DM Sans", sans-serif;
   --font-01: 'Roboto', sans-serif;;
@@ -31,7 +32,7 @@ button,
 body {
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  background-color: var(--font-clr-white-02);
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
@@ -532,10 +533,12 @@ input[data-error]::after {
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
+    height: auto;
+
     box-shadow: unset;
   }
   .hero-content {
-    background: #fff;
+    background: var(--font-clr-white-02);
     color: #000;
     padding: 20px;
   }
