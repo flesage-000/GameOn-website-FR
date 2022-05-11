@@ -2,6 +2,9 @@
   --font-clr-black-01: #000;
   --font-clr-black-02: #232323;
 
+  --font-clr-green-01: #279E7A;
+  --font-clr-green-02: #C4C4C4;
+
   --font-clr-red-01: #FE142F;
 
   --font-clr-white-01: #FFF;
@@ -19,6 +22,12 @@
 /* Landing Page */
 
 /* Generic CSS */
+a,
+button,
+.button {
+  cursor: pointer;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -40,17 +49,27 @@ img {
 }
 
 input {
-  padding: 8px;
-  border: 0.8px solid #ccc;
+  background-color: var(--font-clr-white-01);
+  border: 1px solid var(--font-clr-green-02);
+  border-radius: 8px;
+  color: var(--font-clr-black-01);
+  font-family: var(--font-default);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
   outline: none;
+  text-align: justify;
 }
 
 label {
-  font-family: var(--font-default);
-  font-size: 17px;
-  font-weight: normal;
   display: inline-block;
-  margin-bottom: 11px;
+  margin-bottom: 12px;
+
+  font-family: var(--font-default);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: justify;
 }
 
 main {
@@ -196,6 +215,7 @@ p {
   height: 100%;
   width: 100%;
   overflow: auto;
+
   background-color: rgba(26, 39, 156, 0.4);
 }
 
@@ -205,12 +225,13 @@ p {
   max-width: 500px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
-  background: #232323;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  color: #fff;
   padding-top: 10px;
+
+  background: var(--font-clr-black-02);
+  color: var(--font-clr-white-01);
 }
 
 .modal-body {
@@ -219,12 +240,12 @@ p {
 }
 
 .text-control {
-  margin: 0;
   padding: 8px;
   width: 100%;
-  border-radius: 8px;
-  font-size: 20px;
-  height: 48px;
+  height: 65px;
+}
+.formData:not(:last-child) {
+  margin-bottom: 13px;
 }
 .formData[data-error]::after {
   content: attr(data-error);
@@ -252,32 +273,35 @@ input[data-error]::after {
 } */
 .checkbox-label,
 .checkbox2-label {
-  position: relative;
   margin-left: 36px;
+  margin-right: 20px;
+  padding-top: 4px;
+  position: relative;
+
+  font-family: var(--font-01);
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 500;
+  line-height: 17px;
 }
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
   display: block;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #279e7a;
-  border-radius: 50%;
-  text-indent: 29px;
+  width: 26px;
+  height: 26px;
   white-space: nowrap;
   position: absolute;
-  left: -30px;
+  left: -35px;
   top: -1px;
   transition: 0.3s;
+
+  border: 1px solid var(--font-clr-green-01);
+  border-radius: 50%;
 }
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";
-  width: 13px;
-  height: 13px;
-  background-color: #279e7a;
-  border-radius: 50%;
+  width: 18px;
+  height: 18px;
   text-indent: 29px;
   white-space: nowrap;
   position: absolute;
@@ -286,6 +310,9 @@ input[data-error]::after {
   transform: translate(-50%, -50%);
   transition: 0.3s;
   opacity: 0;
+
+  background-color: var(--font-clr-green-01);
+  border-radius: 50%;
 }
 .checkbox-input {
   display: none;
@@ -295,24 +322,25 @@ input[data-error]::after {
   opacity: 1;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
+  background: var(--font-clr-green-01);
 }
 .checkbox2-label .checkbox-icon {
-  border-radius: 4px;
+  background: var(--font-clr-green-02);
+  border-radius: 6px;
   border: 0;
-  background: #c4c4c4;
 }
 .checkbox2-label .checkbox-icon::after {
-  width: 7px;
-  height: 4px;
-  border-radius: 2px;
-  background: transparent;
-  border: 2px solid transparent;
-  border-bottom-color: #fff;
-  border-left-color: #fff;
+  width: 11px;
+  height: 7px;
   transform: rotate(-55deg);
   left: 21%;
   top: 19%;
+
+  background: transparent;
+  border: 2px solid transparent;
+  border-bottom-color: var(--font-clr-white-01);
+  border-left-color: var(--font-clr-white-01);
+  border-radius: 2px;
 }
 .close {
   position: absolute;
@@ -341,15 +369,18 @@ input[data-error]::after {
 }
 .btn-submit,
 .btn-signup {
-  background: #fe142f;
   display: block;
   margin: 0 auto;
-  border-radius: 7px;
-  font-size: 1rem;
   padding: 12px 82px;
-  color: #fff;
-  cursor: pointer;
+
+  background: var(--font-clr-red-01);
   border: 0;
+  border-radius: 8px;
+  color: var(--font-clr-white-01);
+  font-family: var(--font-default);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
 }
 
 /* custom select CSS */
@@ -420,8 +451,13 @@ input[data-error]::after {
 }
 /* custom select end */
 .text-label {
-  font-weight: normal;
-  font-size: 16px;
+  margin-bottom: 14px;
+
+  font-family: var(--font-default);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: justify;
 }
 .hero-section {
   height: 657px;
