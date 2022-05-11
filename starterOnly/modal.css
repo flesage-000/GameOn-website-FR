@@ -6,6 +6,8 @@
   --font-clr-green-02: #C4C4C4;
 
   --font-clr-red-01: #FE142F;
+  --font-clr-red-02: #FF0000;
+  --font-clr-red-03: #FF001B;
 
   --font-clr-white-01: #FFF;
   --font-clr-white-02: #E5E5E5;
@@ -46,7 +48,14 @@ footer {
 }
 
 img {
-  padding-right: 1rem;
+  margin-right: 1rem;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  img {
+    margin-top: 43px;
+    width: 103px;
+  }
 }
 
 input {
@@ -88,6 +97,11 @@ p {
   overflow: hidden;
   margin: 3.5% 0 3.5% 3.5%;
 }
+@media screen and (max-width: 768px) {
+  .topnav {
+    margin: 3.5% 30px 3.5% 30px;
+  }
+}
 .header-logo {
     float: left;
 }
@@ -109,16 +123,14 @@ p {
   text-decoration: none;
 }
 
-.topnav a:hover {
-  background-color: #ff0000;
-  color: #ffffff;
+.topnav a:hover:not(.icon),
+.topnav a.active:not(.icon) {
+  background-color: var(--font-clr-red-02);
   border-radius: 15px;
+  color: var(--font-clr-white-01);
 }
 
 .topnav a.active {
-  background-color: #ff0000;
-  color: #ffffff;
-  border-radius: 15px;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 5px;
@@ -133,6 +145,12 @@ p {
   .topnav a.icon {
     float: right;
     display: block;
+    margin: 0;
+    padding-top: 38px;
+    padding-right: 30px;
+
+    color: var(--font-clr-red-03);
+    font-size: 24px;
   }
 }
 
