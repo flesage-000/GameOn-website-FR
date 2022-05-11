@@ -10,8 +10,8 @@
 }
 /* Landing Page */
 
+/* Generic CSS */
 body {
-  margin: 0;
   display: flex;
   flex-direction: column;
   background-image: url("background.png");
@@ -21,15 +21,48 @@ body {
   margin: 0 auto;
 }
 
-p {
-  margin-bottom: 0;
-  padding: 0.5vw;
+footer {
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin: 0 20px;
 }
 
 img {
   padding-right: 1rem;
 }
 
+input {
+  padding: 8px;
+  border: 0.8px solid #ccc;
+  outline: none;
+}
+
+label {
+  font-family: var(--font-default);
+  font-size: 17px;
+  font-weight: normal;
+  display: inline-block;
+  margin-bottom: 11px;
+}
+
+main {
+  font-size: 130%;
+  font-weight: bolder;
+  color: black;
+  padding-top: 0.5vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin: 1px 20px 15px;
+  border-radius: 2rem;
+  text-align: justify;
+}
+
+p {
+  margin-bottom: 0;
+  padding: 0.5vw;
+}
+
+/* .topnav CSS */
 .topnav {
   overflow: hidden;
   margin: 3.5%;
@@ -77,7 +110,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -93,7 +128,9 @@ img {
 
 
  @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -101,26 +138,12 @@ img {
   }
 }
 
-main {
-  font-size: 130%;
-  font-weight: bolder;
-  color: black;
-  padding-top: 0.5vw;
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 1px 20px 15px;
-  border-radius: 2rem;
-  text-align: justify;
-
-
-}
-
+/* modal CSS */
 .modal-btn {
   font-size: 145%;
   background: #fe142f;
   display: flex;
   margin: auto;
-  padding: 2em;
   color: #fff;
   padding: 0.75rem 2.5rem;
   border-radius: 1rem;
@@ -131,14 +154,14 @@ main {
   background: #3876ac;
 }
 
+/* footer CSS */
 .footer {
   margin: 20px;
   padding: 10px;
   font-family: var(--font-slab);
 }
 
-/* Modal form */
-
+/* Modal form CSS */
 .button {
   background: #fe142f;
   margin-top: 0.5em;
@@ -188,18 +211,6 @@ main {
   margin: 15px auto;
 }
 
-label {
-  font-family: var(--font-default);
-  font-size: 17px;
-  font-weight: normal;
-  display: inline-block;
-  margin-bottom: 11px;
-}
-input {
-  padding: 8px;
-  border: 0.8px solid #ccc;
-  outline: none;
-}
 .text-control {
   margin: 0;
   padding: 8px;
@@ -333,7 +344,8 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
-/* custom select styles */
+
+/* custom select CSS */
 .custom-select {
   position: relative;
   font-family: Arial;
@@ -431,7 +443,9 @@ input[data-error]::after {
   right: -80px;
   top: 0;
 }
-.hero-content > * {
+.hero-content h1,
+.hero-content p,
+.hero-content button {
   position: relative;
   z-index: 1;
 }
@@ -473,11 +487,7 @@ input[data-error]::after {
 .hero-section > .btn-signup {
   display: none;
 }
-footer {
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 0 20px;
-}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -526,4 +536,3 @@ footer {
     opacity: 1;
   }
 }
-
