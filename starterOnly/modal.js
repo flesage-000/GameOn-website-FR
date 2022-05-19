@@ -31,14 +31,63 @@ modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 // form validation
 // formData.forEach((input) => input.addEventListener("focusout", formCheck));
 formData.forEach((input) => input.addEventListener("blur", formCheck));
+formSub.forEach((form) => form.addEventListener("submit", formSubmit));
 // launch modal form
-function launchModal() {
-  modalbg.style.display = "block";
-}
-
+function launchModal() { modalbg.style.display = "block"; }
 // close modal form
-function closeModal() {
-  modalbg.style.display = "none";
+function closeModal() { modalbg.style.display = "none"; }
+
+function formSubmit(e) { console.log('formSubmit', e, formData);
+  e.preventDefault();
+  formData.forEach((input) => { console.log('input #' + input.id, '|', input.value.length);
+    let inputAttr = input.attributes;
+    let inputType = inputAttr.type.value;
+    let inputValue = input.value;
+
+    if (inputType === "checkbox") { // console.log('Checkbox : required', inputAttr.required, ', checked', input.checked)
+      // Get required attribute
+      let isRequired = inputAttr.required;
+      // Input is required ?
+      if (isRequired) errorManagement(inputAttr.id.value, 'checkTerms', input.checked);
+    } else if (inputType === "date") {
+      // Checks that value is present
+      let validDate = dateValue(inputValue);
+      // Manage error
+      errorManagement(inputAttr.id.value, 'birthdate', validDate);
+    } else if (inputType === "email" ) {
+      // Check that email input value is valid
+      let validEmail = emailValue(inputValue);
+      // Manage error
+      errorManagement(inputAttr.id.value, 'email', validEmail);
+    } else if (inputType === "number" ) {
+      // Checks that value is > to MAX
+      let validMax = maxValue(inputAttr, inputValue);
+      // Manage error
+      errorManagement(inputAttr.id.value, 'minMax', validMax);
+      if (validMax) {
+        // Checks that value is <= to MAX
+        let validMin = minValue(inputAttr, inputValue);
+        // Manage error
+        errorManagement(inputAttr.id.value, 'minMax', validMin);
+      }
+    } else if (inputType === "text" ) { // console.log('inputAttr.required', inputAttr.required);
+      // Input is required ?
+      if (inputAttr.required) {
+        // Checks that value is present
+        let validRequired = isRequired(inputValue);
+        // Manage error
+        errorManagement(inputAttr.id.value, 'required', validRequired);
+      }
+
+      // input has minlength ?
+      if (inputAttr.minlength) {
+        // Check that value has length
+        let validRequired = minlengthValue(inputAttr, inputValue);
+        // Manage error
+        errorManagement(inputAttr.id.value, 'minLength', validRequired);
+      }
+    } else if (inputType === "radio" ) {}
+  })
 }
 
 // value is required
@@ -46,33 +95,32 @@ function formCheck(e) {
   let inputAttr = e.target.attributes;
   let inputType = inputAttr.type.value;
   let inputValue = e.target.value;
-  let inputId = inputAttr.id.value;
 
-  if (inputType === "checkbox") {
+  if (inputType === "checkbox") { // console.log('Checkbox : required', inputAttr.required, ', checked', input.checked)
     // Get required attribute
     let isRequired = inputAttr.required;
     // Input is required ?
-    if (isRequired) errorManagement(inputId, 'checkTerms', this.checked);
+    if (isRequired) errorManagement(inputAttr.id.value, 'checkTerms', e.checked);
   } else if (inputType === "date") {
     // Checks that value is present
     let validDate = dateValue(inputValue);
     // Manage error
-    errorManagement(inputId, 'birthdate', validDate);
+    errorManagement(inputAttr.id.value, 'birthdate', validDate);
   } else if (inputType === "email" ) {
     // Check that email input value is valid
     let validEmail = emailValue(inputValue);
     // Manage error
-    errorManagement(inputId, 'email', validEmail);
+    errorManagement(inputAttr.id.value, 'email', validEmail);
   } else if (inputType === "number" ) {
     // Checks that value is > to MAX
     let validMax = maxValue(inputAttr, inputValue);
     // Manage error
-    errorManagement(inputId, 'minMax', validMax);
+    errorManagement(inputAttr.id.value, 'minMax', validMax);
     if (validMax) {
       // Checks that value is <= to MAX
       let validMin = minValue(inputAttr, inputValue);
       // Manage error
-      errorManagement(inputId, 'minMax', validMin);
+      errorManagement(inputAttr.id.value, 'minMax', validMin);
     }
   } else if (inputType === "text" ) { // console.log('inputAttr.required', inputAttr.required);
     // Input is required ?
@@ -80,7 +128,7 @@ function formCheck(e) {
       // Checks that value is present
       let validRequired = isRequired(inputValue);
       // Manage error
-      errorManagement(inputId, 'required', validRequired);
+      errorManagement(inputAttr.id.value, 'required', validRequired);
     }
 
     // input has minlength ?
@@ -88,7 +136,7 @@ function formCheck(e) {
       // Check that value has length
       let validRequired = minlengthValue(inputAttr, inputValue);
       // Manage error
-      errorManagement(inputId, 'minLength', validRequired);
+      errorManagement(inputAttr.id.value, 'minLength', validRequired);
     }
   } else if (inputType === "radio" ) {}
 }
@@ -114,8 +162,7 @@ function maxValue(attr, value) {
   return parseInt(value) <= attr.max.value ? true : false
 }
 
-function minValue(attr, value) {
-  console.log('minValue', value, attr.min.value, (parseInt(value) >= attr.min.value ? true : false));
+function minValue(attr, value) { console.log('minValue', value, attr.min.value, (parseInt(value) >= attr.min.value ? true : false));
   return parseInt(value) >= attr.min.value ? true : false
 }
 /**
@@ -150,7 +197,7 @@ function minlengthValue(attr, value) {
  * Add/remove errorMessage for input
  * @param {string} input The input's ID
  * @param {string} errorType The error message ID
- * @param {boolean} remove If true, the error message will be remove from error node. Default 'false'.
+ * @param {boolean} isValid If true, the error message will be remove from error node. Default 'false'.
  * @returns
  */
 function errorManagement(input, errorType, isValid) { console.log('errorManagement', errorType, isValid);
