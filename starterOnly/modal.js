@@ -31,6 +31,7 @@ modalCloseBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 // form validation
 // formData.forEach((input) => input.addEventListener("focusout", formCheck));
 formData.forEach((input) => input.addEventListener("blur", formCheck));
+formData.forEach((input) => input.addEventListener("change", formCheck));
 formSub.forEach((form) => form.addEventListener("submit", formSubmit));
 // launch modal form
 function launchModal() { modalbg.style.display = "block"; }
@@ -43,6 +44,7 @@ function formSubmit(e) { console.log('formSubmit', e, formData);
     let inputAttr = input.attributes;
     let inputType = inputAttr.type.value;
     let inputValue = input.value;
+    let radioChecked = false;
 
     if (inputType === "checkbox") { // console.log('Checkbox : required', inputAttr.required, ', checked', input.checked)
       // Get required attribute
@@ -86,7 +88,16 @@ function formSubmit(e) { console.log('formSubmit', e, formData);
         // Manage error
         errorManagement(inputAttr.id.value, 'minLength', validRequired);
       }
-    } else if (inputType === "radio" ) {}
+    } else if (inputType === "radio" ) { // console.log('radio', input.name);
+      let radioName = document.getElementsByName(input.name);
+      let i = 0;
+      while(i < radioName.length){
+        if (radioChecked === false && radioName[i].checked) radioChecked = true;
+        i++;
+      }
+      // Manage error
+      errorManagement(inputAttr.id.value, 'selectOption', radioChecked);
+    }
   })
 }
 
@@ -95,6 +106,7 @@ function formCheck(e) {
   let inputAttr = e.target.attributes;
   let inputType = inputAttr.type.value;
   let inputValue = e.target.value;
+  let radioChecked = false;
 
   if (inputType === "checkbox") { // console.log('Checkbox : required', inputAttr.required, ', checked', input.checked)
     // Get required attribute
@@ -138,7 +150,16 @@ function formCheck(e) {
       // Manage error
       errorManagement(inputAttr.id.value, 'minLength', validRequired);
     }
-  } else if (inputType === "radio" ) {}
+  } else if (inputType === "radio" ) { console.log('radio', inputAttr.name.value);
+    let radioName = document.getElementsByName(inputAttr.name.value);
+    let i = 0;
+    while(i < radioName.length){
+      if (radioChecked === false && radioName[i].checked) radioChecked = true;
+      i++;
+    }
+    // Manage error
+    errorManagement(inputAttr.id.value, 'selectOption', radioChecked);
+  }
 }
 
 function checkboxRequired(attr, value) {
