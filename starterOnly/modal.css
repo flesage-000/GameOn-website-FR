@@ -55,7 +55,7 @@ img {
 }
 @media screen and (max-width: 768px) {
   img {
-    margin-top: 43px;
+    margin-top: 25px;
     width: 103px;
   }
 }
@@ -251,17 +251,26 @@ p {
   padding-top: 10px;
 
   background: var(--font-clr-black-02);
+  box-shadow: 0 12px 12px rgba(0, 0, 0, 0.25);
   color: var(--font-clr-white-01);
 }
 @media screen and (max-width: 768px) {
   .content {
     border-radius: 10px 10px 0 0;
+
+    height: calc(100vh - 100px);
+    width: 100%;
+    max-width: none;
+    margin: 100px auto 0;
   }
 }
 
 .modal-body {
   padding: 15px 30px;
   margin: 15px auto;
+}
+.modal-body form + p {
+  display: none;
 }
 
 .text-control {
@@ -289,7 +298,7 @@ p {
   opacity: 1;
 }
 .formData[data-error-visible="true"] .text-control {
-  border: 2px solid var(--font-clr-error-01) inner;
+  border: 2px solid var(--font-clr-error-01);
 }
 .formData .error {
   color: var(--font-clr-error-01);
@@ -304,6 +313,7 @@ p {
 }
 .formData input:invalid + .error {
   display: inline-block;
+  margin-top: 8px;
 }
 .formData input + .error:empty {
   display: none;
@@ -383,7 +393,7 @@ input:invalid + .error {
   border-left-color: var(--font-clr-white-01);
   border-radius: 2px;
 }
-.close {
+.closeCross {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -393,8 +403,8 @@ input:invalid + .error {
   cursor: pointer;
   transform: scale(0.7);
 }
-.close:before,
-.close:after {
+.closeCross:before,
+.closeCross:after {
   position: absolute;
   left: 15px;
   content: " ";
@@ -402,14 +412,15 @@ input:invalid + .error {
   width: 3px;
   background-color: #fff;
 }
-.close:before {
+.closeCross:before {
   transform: rotate(45deg);
 }
-.close:after {
+.closeCross:after {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.btn-close {
   display: block;
   margin: 0 auto;
   padding: 12px 82px;
@@ -609,6 +620,19 @@ input:invalid + .error {
     margin-top: 50px;
     text-align: center;
   }
+}
+
+/* Modal thx message */
+.msgThx {
+  display: none;
+}
+.msgThx p {
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 51px;
+  text-align: center;
+
+  margin: 30VH 0;
 }
 
 @keyframes modalopen {
