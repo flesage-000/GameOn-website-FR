@@ -62,7 +62,6 @@ img {
 
 input {
   background-color: var(--font-clr-white-01);
-  border: 1px solid var(--font-clr-green-02);
   border-radius: 8px;
   color: var(--font-clr-black-01);
   font-family: var(--font-default);
@@ -297,8 +296,11 @@ p {
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
-.formData[data-error-visible="true"] .text-control {
-  border: 2px solid var(--font-clr-error-01);
+.formData .text-control:invalid {
+  border: 1px solid var(--font-clr-error-01);
+}
+.formData .text-control:valid {
+  border: 1px solid var(--font-clr-green-02);
 }
 .formData .error {
   color: var(--font-clr-error-01);
