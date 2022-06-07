@@ -310,10 +310,10 @@ p {
   line-height: 14px;
 }
 .formData .error > span {
-  display: inline-block;
+  display: block;
   width: 100%;
 }
-.formData input:invalid + .error {
+.formData input + .error {
   display: inline-block;
   margin-top: 8px;
 }

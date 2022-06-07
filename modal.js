@@ -94,6 +94,9 @@ function formCheck(e, isSubmit = false) { // console.log('e', e.nodeName);
     radioChecked = false;
   }
 
+  // Remove start and end space(s)
+  inputValue = inputValue.trim();
+
   if (inputType === "checkbox") { // console.log('Checkbox : required', inputAttr.required, ', checked', input.checked)
     // Get required attribute
     let isRequired = inputAttr.required;
