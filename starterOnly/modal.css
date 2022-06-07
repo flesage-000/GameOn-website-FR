@@ -172,7 +172,7 @@ p {
 
 
 
- @media screen and (max-width: 540px) {
+ @media screen and (max-width: 768px) {
   .topnav a {
     display: none;
   }
@@ -594,6 +594,7 @@ input:invalid + .error {
     background: var(--font-clr-white-02);
     color: #000;
     padding: 20px;
+    min-width: unset;
   }
   .hero-content::after {
     content: unset;
