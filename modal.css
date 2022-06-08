@@ -296,10 +296,10 @@ p {
 .formData[data-error-visible="true"]::after {
   opacity: 1;
 }
-.formData .text-control:invalid {
+.formData .text-control.notValid {
   border: 1px solid var(--font-clr-error-01);
 }
-.formData .text-control:valid {
+.formData .text-control:not(.notValid) {
   border: 1px solid var(--font-clr-green-02);
 }
 .formData .error {

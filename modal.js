@@ -71,6 +71,15 @@ function formSubmit(e) { // console.log('formSubmit', e, formData);
     // Check current input
     formCheck(input, true);
   })
+
+  // In case of submited valid form, 'thanks' message must be display
+  let a = (currentValid) => currentValid.valid === true;
+  let formIsValid = errorsList.every(a);
+
+  if (formIsValid) {
+    formSub[0].style.display = 'none';
+    msgThx.style.display = 'block';
+  }
 }
 
 /**
@@ -154,17 +163,6 @@ function formCheck(e, isSubmit = false) { // console.log('e', e.nodeName);
     errorManagement(inputAttr.id.value, 'selectOption', radioChecked);
   }
 
-  // In case of submited valid form, 'thanks' message must be display
-  if (isSubmit) {
-    let a = (currentValid) => currentValid.valid === true;
-    let formIsValid = errorsList.every(a);
-
-    if (formIsValid) {
-      formSub[0].style.display = 'none';
-      msgThx.style.display = 'block';
-    }
-  }
-
 }
 
 /**
@@ -246,6 +244,7 @@ function errorManagement(input, errorType, isValid) { // console.log('errorManag
   if (isValid) {
     // Set valid to false
     errorsList.find(x => x.name == errorType).valid = true;
+    document.querySelector('#' + input).classList.remove('notValid');
     // Remove error message from DOM
     if (currentErrorContainer) currentErrorContainer.remove();
   } else {
@@ -253,6 +252,7 @@ function errorManagement(input, errorType, isValid) { // console.log('errorManag
     // In case of detection the script return false to avoid duplicated error message
     if (errorContainer.querySelector('.' + errorType)) return false
 
+    document.querySelector('#' + input).classList.add('notValid');
     // Set valid to false
     errorsList.find(x => x.name == errorType).valid = false;
     // Get error message
